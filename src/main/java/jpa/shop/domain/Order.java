@@ -23,10 +23,22 @@ public class Order {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
+    /*
+    * cascade = CascadeType.ALL
+    * ->
+    * persist(orderItemA)
+    * persist(orderItemB)
+    * persist(orderItemC)
+    * persist(order)
+    * 의 코드를
+    *
+    * persist(order)
+    * 로 줄일 수 있음
+    * */
 
-    @OneToOne(fetch = LAZY)
+    @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
