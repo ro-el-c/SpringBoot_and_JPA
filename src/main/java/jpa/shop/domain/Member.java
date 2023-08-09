@@ -21,9 +21,5 @@ public class Member {
 
     @OneToMany(mappedBy = "member") // 회원:주문 = 1:N, Order 의 member 필드와 연결
     // mappedBy : 거울
-    private List<Order> orders;
-
-    public Member() {
-        orders = new ArrayList<>();
-    }
+    private List<Order> orders = new ArrayList<>( );
 }
