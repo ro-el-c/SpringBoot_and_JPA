@@ -25,47 +25,47 @@ public class OrderRepository {
         return em.find(Order.class, id);
     }
 
-    /**
-     * JPQL 문자열 생성
-     * */
-    public List<Order> findAllByString(OrderSearch orderSearch) {
-        //language=JPQL
-        String jpql = "select o From Order o join o.member m";
-        boolean isFirstCondition = true;
-
-        //주문 상태 검색
-        if (orderSearch.getOrderStatus() != null) {
-            if (isFirstCondition) {
-                jpql += " where";
-                isFirstCondition = false;
-            } else {
-                jpql += " and";
-            }
-            jpql += " o.status = :status";
-        }
-
-        //회원 이름 검색
-        if (StringUtils.hasText(orderSearch.getMemberName())) {
-            if (isFirstCondition) {
-                jpql += " where";
-                isFirstCondition = false;
-            } else {
-                jpql += " and";
-            }
-            jpql += " m.name like :name";
-        }
-
-        TypedQuery<Order> query = em.createQuery(jpql, Order.class)
-                .setMaxResults(1000); //최대 1000건
-        if (orderSearch.getOrderStatus() != null) {
-            query = query.setParameter("status", orderSearch.getOrderStatus());
-        }
-        if (StringUtils.hasText(orderSearch.getMemberName())) {
-            query = query.setParameter("name", orderSearch.getMemberName());
-        }
-
-        return query.getResultList();
-    }
+//    /**
+//     * JPQL 문자열 생성
+//     * */
+//    public List<Order> findAllByString(OrderSearch orderSearch) {
+//        //language=JPQL
+//        String jpql = "select o From Order o join o.member m";
+//        boolean isFirstCondition = true;
+//
+//        //주문 상태 검색
+//        if (orderSearch.getOrderStatus() != null) {
+//            if (isFirstCondition) {
+//                jpql += " where";
+//                isFirstCondition = false;
+//            } else {
+//                jpql += " and";
+//            }
+//            jpql += " o.status = :status";
+//        }
+//
+//        //회원 이름 검색
+//        if (StringUtils.hasText(orderSearch.getMemberName())) {
+//            if (isFirstCondition) {
+//                jpql += " where";
+//                isFirstCondition = false;
+//            } else {
+//                jpql += " and";
+//            }
+//            jpql += " m.name like :name";
+//        }
+//
+//        TypedQuery<Order> query = em.createQuery(jpql, Order.class)
+//                .setMaxResults(1000); //최대 1000건
+//        if (orderSearch.getOrderStatus() != null) {
+//            query = query.setParameter("status", orderSearch.getOrderStatus());
+//        }
+//        if (StringUtils.hasText(orderSearch.getMemberName())) {
+//            query = query.setParameter("name", orderSearch.getMemberName());
+//        }
+//
+//        return query.getResultList();
+//    }
 
     /**
      * JPA Criteria
@@ -98,4 +98,11 @@ public class OrderRepository {
 
         return query.getResultList();
     }
+
+    /**
+     * QueryDSL
+     * ->
+     * 실전! 스프링 부트와 JPA 활용2 - API 개발과 성능 최적화
+     * QueryDSL 소개에서 학습
+     * */
 }
