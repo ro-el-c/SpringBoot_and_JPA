@@ -2,13 +2,16 @@ package jpa.shop.domain;
 
 import jakarta.persistence.*;
 import jpa.shop.domain.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import static jakarta.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class OrderItem {
     @Id @GeneratedValue
     @Column(name = "order_item_id")
@@ -24,6 +27,12 @@ public class OrderItem {
 
     private int orderPrice;
     private int count;
+
+
+    /* @NoArgsConstructor(access = AccessLevel.PROTECTED) 로 대체 */
+//    protected OrderItem() {
+//        // createOrderItem 외의 생성자 사용 막음
+//    }
 
     // 생성 메서드
     public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
