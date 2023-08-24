@@ -1,4 +1,4 @@
-package jpa.shop.controller;
+package jpa.shop.controller.form;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;

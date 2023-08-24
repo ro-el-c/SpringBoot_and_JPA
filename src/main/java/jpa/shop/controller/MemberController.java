@@ -1,6 +1,7 @@
 package jpa.shop.controller;
 
 import jakarta.validation.Valid;
+import jpa.shop.controller.form.MemberForm;
 import jpa.shop.domain.Address;
 import jpa.shop.domain.Member;
 import jpa.shop.service.MemberService;
