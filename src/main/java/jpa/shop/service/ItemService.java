@@ -23,7 +23,7 @@ public class ItemService {
         itemRepository.save(item);
     }
 
-    public Item findOnd(Long itemId) {
+    public Item findOne(Long itemId) {
         return itemRepository.findOne(itemId);
     }
 
