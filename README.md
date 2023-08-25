@@ -11,5 +11,5 @@
 | 3  | [애플리케이션 구현 준비](https://ro-el.notion.site/00a1dc1bafed46d0aeb1d1fbb01d0f34?pvs=4) | Ready for Develop      |
 | 4  | [회원 도메인 개발](https://ro-el.notion.site/19e5b81fc264447d8c5d8850af605ba4?pvs=4)    | Member Domain          |
 | 5  | 상품 도메인 개발                                                                        | Item Domain            |
-| 6  | [주문 도메인 개발](https://ro-el.notion.site/c9e5b56f714c4026b5402b527bac8691?pvs=4)   | Order Domain           |
-| 7  | 웹 계층 개발                                                                          | Web Hierarchy          |
+| 6  | [주문 도메인 개발](https://ro-el.notion.site/c9e5b56f714c4026b5402b527bac8691?pvs=4)    | Order Domain           |
+| 7  | [웹 계층 개발](https://ro-el.notion.site/e65438f3450a43f780745e949cc5dec5?pvs=4)  | Web Hierarchy          |
