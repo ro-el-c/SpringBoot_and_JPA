@@ -5,6 +5,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,10 +16,12 @@ import static jakarta.persistence.FetchType.*;
 
 @Entity
 @Table(name = "orders")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Order {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "order_id")
     private Long id;
 
@@ -29,17 +33,17 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
     /*
-    * cascade = CascadeType.ALL
-    * ->
-    * persist(orderItemA)
-    * persist(orderItemB)
-    * persist(orderItemC)
-    * persist(order)
-    * 의 코드를
-    *
-    * persist(order)
-    * 로 줄일 수 있음
-    * */
+     * cascade = CascadeType.ALL
+     * ->
+     * persist(orderItemA)
+     * persist(orderItemB)
+     * persist(orderItemC)
+     * persist(order)
+     * 의 코드를
+     *
+     * persist(order)
+     * 로 줄일 수 있음
+     * */
 
     @OneToOne(fetch = LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id")
@@ -83,9 +87,10 @@ public class Order {
     }
 
     // 비즈니스 로직
+
     /**
      * 주문 취소
-     * */
+     */
     public void cancel() {
         if (delivery.getStatus() == DeliveryStatus.COMP) {
             throw new IllegalStateException("이미 배송 완료된 상품은 취소가 불가능합니다.");
@@ -98,9 +103,10 @@ public class Order {
     }
 
     // 조회 로직
+
     /**
      * 전체 주문 가격 조회
-     * */
+     */
     public int getTotalPrice() {
         int totalPrice = 0;
         for (OrderItem orderItem : orderItems) {
